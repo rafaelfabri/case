@@ -12,7 +12,8 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 
 ```math
     Support(P(A)) = \frac{P(A)}{n}
-```math
+```
+
 	* P(A) Frequência que o item A apareceu nas cestas em um determinado período;
 	* n Quantidade total de cestas naquele período.
 
@@ -21,7 +22,8 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 
 ```math
     Confidence(P(B | A)) = \frac{P(A \cap B)}{Support(P(A))}
-```math
+```
+
 	* (P(B | A)) Probabilidade de B ser escolhido se A for escolhido;
 	* P(A \cap B) Interseção entre A e B, quantidade de cestas que A e B estão juntos.
 
@@ -29,7 +31,8 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 
 ```math
     Confidence(P(B | A)) = \frac{Confidence(P(B | A))}{Support(P(B)} 
-```math
+```
+
 
 Utilizando essas métricas vamos conseguir verificar os 10 items mais relevantes no período do conjunto de dados e também verificar os 15 items que acompanham esses cada um dos respectivos items.
 
