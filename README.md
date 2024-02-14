@@ -10,15 +10,27 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 
 * Support: Frequencia que o item A apareceu nas cestas (produtos com maior support foram os mais relevantes no período);
 
-\begin{equation}
-    Support(P(A)) = \frac{P(A)}{n}  
-\end{equation}
 
-* Confidence: Escolhendo um item X como support (item com maior frequancia), das vezes que o item X esta na cesta qual é a chance do item Y também estar;
+   $$ Support(P(A)) = \frac{P(A)}{n} $$ 
+   
+* P(A) Frequência que o item A apareceu nas cestas em um determinado período;
+* n Quantidade total de cestas naquele período.
+
+
+* Confidence: Escolhendo um item A como support (item com maior frequancia), das vezes que o item A esta na cesta qual é a chance do item B também estar;
+
+   $$ Confidence(P(B | A)) = \frac{P(A \cap B)}{Support(P(A))} $$ 
+
+* (P(B | A)) Probabilidade de B ser escolhido se A for escolhido;
+* P(A \cap B) Interseção entre A e B, quantidade de cestas que A e B estão juntos.
+
 * Lift: A quantidade de vezes que se o item Y vai ser escolhido se item X for comprado.
 
+   $$ Confidence(P(B | A)) = \frac{Confidence(P(B | A))}{Support(P(B)} $$ 
 
-Utilizando a métrica support para descobrir os items mais relevantes neste período do estudo, foi encontrado os 10 items abaixo com maior support:
+Utilizando essas métricas vamos conseguir verificar os 10 items mais relevantes no período do conjunto de dados e também verificar os 15 items que acompanham esses cada um dos respectivos items.
+
+Abaixo encontra-se os 10 items mais relevantes que possuem maior support:
 
 ![exemplo 1](https://github.com/rafaelfabri/case/blob/main/imagens/support_antecede.png)
 
