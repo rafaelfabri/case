@@ -42,16 +42,27 @@ $$Lift= \frac{P(A U B)}{Support(P(A))*Support(P(B))}$$
 
 
 
-Com essas métricas vamos conseguir responder as perguntas feitas na Parte 1 deste estudo de caso. A imagem abaixo explica um pouco como.
-
-
 Utilizando essas métricas vamos conseguir verificar os 10 items mais relevantes no período do conjunto de dados, também verificar os 15 items que acompanham esses cada um dos respectivos items e encontrar oportunidades de combos/promoções em conjunto.
+
+Com essas métricas vamos conseguir responder as perguntas feitas na Parte 1 deste estudo de caso. O fluxograma abaixo mostra a lógica simplificada do que foi feito no código para chegar na tabela final com os valores.
 
 ![img1](https://github.com/rafaelfabri/case/blob/main/imagens/fluxograma_mba.png)
 
-Abaixo encontra-se os 10 items mais relevantes que possuem maior support:
+Os 10 items mais relevantes de acordo com a métrica support encontra-se abaixo no gráfico e na tabela: 
 
-![exemplo 1](https://github.com/rafaelfabri/case/blob/main/imagens/support_antecede.png)
+
+![support antecede grafico](https://github.com/rafaelfabri/case/blob/main/imagens/10_items_mais_relevantes.png)
+
+
+![support antecede](https://github.com/rafaelfabri/case/blob/main/imagens/support_antecede.png)
+
+A SACOLA PLASTICA MM BRANCA é o produto teve maior percentual de saídas no respectivo período da base de dados, das 874.860 cestas 3,3% foram SACOLA PLASTICA MM BRANCA. Porteriormente vem SACOLA PLASTICA MM CINZA, PAPEL TOALHA.., etc.
+
+Agora que sabemos que esses são os 10 items mais relevantes, vamos ver os produtos mais significativos que o acompanham nas cestas, para ver isso vamos vamos ver os 15 produtos com maior quantidade referente a cada um dos items A calcular a confidence P(B|A), support(B) e Lift.
+
+A métrica principal aqui será o Lift, mas para entendermos ela será necessário utilizarmos a confidence e support(B).
+
+Vamos começar com os items de maior Lift, que está representado na imagem abaixo 
 
 ![exemplo 2](https://github.com/rafaelfabri/case/blob/main/imagens/exemplo_support.png)
 
