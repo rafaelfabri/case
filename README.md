@@ -6,7 +6,7 @@ https://github.com/rafaelfabri/case/blob/main/notebooks/parte_1_analytics.ipynb
 
 ## Market Basket Analysis
 
-![img1](https://github.com/rafaelfabri/case/blob/main/imagens/fluxograma_mba.png)
+![Fluxograma](https://github.com/rafaelfabri/case/blob/main/imagens/img1.jpg)
 
 A market Basket analysis tem como ideia trazer número de associacões entre produtos. Utilizando estatistíca com teoria de probabilidade, interseçao, união, etc. Para a parte 1 deste case foi calculado 3 métricas Support (Apoio), Confidence (Confiança), Lift (Levantamento):
 
@@ -25,10 +25,9 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 * Confidence: Qual é a probabilidade do item B ser comprado dado que o item A também seja comprado;
 
 ```math
-
     Confidence(P(B | A)) = \frac{P(A U B)}{Support(P(A))}
-
 ```
+
 
 	* (P(B | A)) Probabilidade de B ser escolhido se A for escolhido;
 	* P(A U B) Interseção entre A e B, percentual de cestas que A e B foram comprados juntos.
@@ -36,22 +35,24 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 		
 * Lift: A chance do item B ser comparado se item A também for, levando em consideração toda a popularidade de B. As duas equações abaixo podem ser aplicadas para calcular o Lift.
 
-```math
-
+``` math
     Lift = \frac{Confidence(P(B | A))}{Support(P(B)} 
-
 ```
+
+
 
 ```math
     Lift= \frac{P(A U B)}{Support(P(A))*Support(P(B))} 
 ```
+
+
 
 Com essas métricas vamos conseguir responder as perguntas feitas na Parte 1 deste estudo de caso. A imagem abaixo explica um pouco como.
 
 
 Utilizando essas métricas vamos conseguir verificar os 10 items mais relevantes no período do conjunto de dados, também verificar os 15 items que acompanham esses cada um dos respectivos items e encontrar oportunidades de combos/promoções em conjunto.
 
-![Fluxograma](https://github.com/rafaelfabri/case/blob/main/imagens/img1.jpg)
+![img1](https://github.com/rafaelfabri/case/blob/main/imagens/fluxograma_mba.png)
 
 Abaixo encontra-se os 10 items mais relevantes que possuem maior support:
 
