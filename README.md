@@ -12,11 +12,8 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 
 * Support: é a frequencia que o produto A apareceu nas cestas/ticket dividido pelo número total de transações, em resumo é o percentual que o produto A apareceu nas cestas daquele determinado período;
 
-```math
+$$Support(P(A)) = \frac{qtd A}{n}$$
 
-    Support(P(A)) = \frac{qtd A}{n}
-    
-```
 
 	* qtd A Frequência que o item A apareceu nas cestas em um respectivo período;
 	* n Quantidade total de cestas naquele respectivo período.
@@ -24,9 +21,8 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 
 * Confidence: Qual é a probabilidade do item B ser comprado dado que o item A também seja comprado;
 
-```math
-    Confidence(P(B | A)) = \frac{P(A U B)}{Support(P(A))}
-```
+
+$$Confidence(P(B | A)) = \frac{P(A U B)}{Support(P(A))}$$
 
 
 	* (P(B | A)) Probabilidade de B ser escolhido se A for escolhido;
@@ -35,9 +31,8 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 		
 * Lift: A chance do item B ser comparado se item A também for, levando em consideração toda a popularidade de B. As duas equações abaixo podem ser aplicadas para calcular o Lift.
 
-``` math
-    Lift = \frac{Confidence(P(B | A))}{Support(P(B)} 
-```
+
+$$Lift = \frac{Confidence(P(B | A))}{Support(P(B)}$$
 
 
 
