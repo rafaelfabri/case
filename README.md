@@ -41,9 +41,9 @@ A market Basket analysis tem como ideia trazer número de associacões entre pro
 
 
 
-```math
-    Lift= \frac{P(A U B)}{Support(P(A))*Support(P(B))} 
-```
+
+$$Lift= \frac{P(A U B)}{Support(P(A))*Support(P(B))}$$
+
 
 
 
