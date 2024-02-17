@@ -62,12 +62,39 @@ Agora que sabemos que esses são os 10 items mais relevantes, vamos ver os produ
 
 A métrica principal aqui será o Lift, mas para entendermos ela será necessário utilizarmos a confidence e support(B).
 
-Vamos começar com os items de maior Lift, que está representado na imagem abaixo 
+Vamos começar com os items de maior Lift, que está representado na Tabela abaixo:
 
-![exemplo 2](https://github.com/rafaelfabri/case/blob/main/imagens/exemplo_support.png)
+![exemplo 2](https://github.com/rafaelfabri/case/blob/main/imagens/tabela_final_parte_1.png)
+
+Dentre os 10 items mais relevantes, o item LEITE CONDENSADO TP 395G PIRACANJ (B) possui o maior Lift (37.84) quando item CR DE LEITE PIRACANJUBA TP 200G (A) está na cesta.
+
+Isso significa que quando é colocado na cesta um CR DE LEITE PIRACANJUBA TP 200G a chance desse cliente também comprar LEITE CONDENSADO TP 395G PIRACANJ aumenta em 37 vezes. A explicação desse valor vem da relaçao da confidence com o support_consequencia que é referente ao item B. Portanto, quando observamos, existe aproximadamente 4,5% de probabilidade do item B ser adquirido dado que o item A também foi adquirido, é uma probabilidade pequena, mas quando comparamos isoladamente a propabilidade do item B ser comprado é de 0,11% (support_consequencia), assim quando adiquirido o item A a chance do item B também se adquirido é 37 vezes maior.
+
+Aqui podemos ver uma oportunidade de alavancar a venda do LEITE CONDENSADO que é comprado apenas 0,11% das vezes:
+* se colocarmos leite condesado próximo ao leite;
+* montar promomoções na compra de duas caixa de leite o cliente ganha um desconto no leite condensado;
+* montar Kit de vendas.
+
+Para entendermos um pouco de como a métrica Lift se comparta podemos ver a matriz abaixo:
+
+![Matriz](https://github.com/rafaelfabri/case/blob/main/imagens/matriz.png)
+
+* **Lift <= 1** isso mostra que não temos evidencias suficientes que o cliente que fazer aquisição do item A também vai fazer a aquisição so item B.
+* **Lift > 1** isso mostra indicios que a aquisição do item A aumenta a chance da aquisição do item B
+
+Para chegarmos nesses resultados do Lift tem 4 possibilidades:
+1) Confidence Alto e Support Alto: Quando se tem a condidence(P(B|A)) alto isso indica que existe uma grande probabilidade do item B ser adiquirido quando o item A também for. No entanto, o item B isoladamente já possui uma alta probabilidade de aquisição. Portanto, não há um questão de associação entre o item A e o item B, mas sim uma semelhança por os dois item serem items que saem bastante.
+2) Confidence Alto e Support Pequeno: Esse caso representa o exemplo acima, a confidence é alta fazendo o item B ter uma alta probabilidade de ser adquirido se o item A também for adquirido. Quando olhamos isoladamente o item B os clietes fazer pouca aquisição dele, mas quando acompanhado do item A a chance dele ser comprado aumenta.
+3) Confidence Pequeno e Support Alto: A confidence dos dois produtos é pequena, mas o support do item B é alto, o que provoca um Lift menor que 1, o item A e B são comprados individualmente não sendo associados.
+4) Confidence Pequeno e Support Pequeno: Nesse caso os dois são pequenos, não há indicios suficientes para dizermos que os items são associados.
+
+
+![exemplo 3](https://github.com/rafaelfabri/case/blob/main/imagens/tabela_final_parte_1_.png)
 
 
 
 # Parte 2: Data Science
+
+![img 1](https://github.com/rafaelfabri/case/blob/main/imagens/Algoritmo_Apriori.png)
 
 # Parte 3: Pipeline de dados
