@@ -107,6 +107,14 @@ Para a parte 2 a ideia é verificar a associação de 3 items, para isso foi pro
 
 ![img 2](https://github.com/rafaelfabri/case/blob/main/imagens/fluxograma_apriori.png)
 
+Resultados
 
+![img 3](https://github.com/rafaelfabri/case/blob/main/imagens/apriori_1.png)
+
+![img 4](https://github.com/rafaelfabri/case/blob/main/imagens/apriori_2.png)
+
+![img 5](https://github.com/rafaelfabri/case/blob/main/imagens/apriori_3.png)
 
 # Parte 3: Pipeline de dados
+
+![img 6](https://github.com/rafaelfabri/case/blob/main/imagens/airflow.png)
