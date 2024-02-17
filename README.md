@@ -88,13 +88,25 @@ Para chegarmos nesses resultados do Lift tem 4 possibilidades:
 3) Confidence Pequeno e Support Alto: A confidence dos dois produtos é pequena, mas o support do item B é alto, o que provoca um Lift menor que 1, o item A e B são comprados individualmente não sendo associados.
 4) Confidence Pequeno e Support Pequeno: Nesse caso os dois são pequenos, não há indicios suficientes para dizermos que os items são associados.
 
+Abaixo estão os valores com menor Lift.
 
 ![exemplo 3](https://github.com/rafaelfabri/case/blob/main/imagens/tabela_final_parte_1_.png)
 
+Observa-se que todos os Lift são maiores que 1, mas esses valores continuam próximo de 1 ainda indicando uma fraca associação e olhando rapidamente esses produtos todos items A são cervejas e quando comparado com o item B na prática realmente não há um associação entre esses items. No entanto, é importante realizar um estudo com mais cuidado.
 
 
 # Parte 2: Data Science
 
+A análise feita na parte 2 encontra-se em um jupyter notebook neste repositório do GitHub:
+case/notebooks/parte_2_data_science.ipynb
+https://github.com/rafaelfabri/case/blob/main/notebooks/parte_2_data_science.ipynb
+
 ![img 1](https://github.com/rafaelfabri/case/blob/main/imagens/Algoritmo_Apriori.png)
+
+Para a parte 2 a ideia é verificar a associação de 3 items, para isso foi proposto utilizar o algoritmo apriori. Foi feito algumas adpatações em relação ao algoritmo.
+
+![img 2](https://github.com/rafaelfabri/case/blob/main/imagens/fluxograma_apriori.png)
+
+
 
 # Parte 3: Pipeline de dados
