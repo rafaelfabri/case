@@ -118,3 +118,46 @@ Resultados
 # Parte 3: Pipeline de dados
 
 ![img 6](https://github.com/rafaelfabri/case/blob/main/imagens/airflow.png)
+
+O pipeline de dados da parte 3 encontra-se em um script .py neste repositório do GitHub:
+case/airflow/dags/parte_3_airflow.py
+https://github.com/rafaelfabri/case/blob/main/notebooks/parte_2_data_science.ipynb
+
+Para realizar a orquestração em Airflow foi criada a DAG com o nome algoritmo_apriori, com três Tasks como mostrado abaixo:
+
+![img 7](https://github.com/rafaelfabri/case/blob/main/imagens/airflow_dag.png)
+
+![img 8](https://github.com/rafaelfabri/case/blob/main/imagens/airflow_tasks.png)
+
+Foi utilizado uma Task vazia, chamada de Inicio apenas para representar o início do código.
+
+Depois existe uma Task chamada extracao_dados_e_execucao_apriori. Essa task possui algumas funções dentro dela, a principal é realizar a extração de dados e depois realizar as etapas do algoritimo apriori.
+
+Não foi escolhido fazer duas tasks individuais para extraçao e execuçao do algoritmo, pois para passar o dataframe de uma task para outra utilizando um *XCOM* ou fazendo um carregamento pode honerar muito por estarmos trbalhando com um volume significativo de dados.
+
+A task final utiliza de XCOM para salvar o arquivo localmente.
+
+Para respondermos a pergunta 2 da parte 3 para gravar a saída do algoritmo apriori para uma tabela no BigQuery pode-se substituir a task 3 pelo código abaixo. Nunca trabalhei com BigQuery então não tenho certeza se toda sintaxe esta correta.
+
+
+```python
+	    PROJECT = ''
+	    DESTINATION_DS = ''
+	    DESTINATION_TBL = ''
+	    
+	    load_data = BigQueryInsertJobOperator(task_id='copy-table-1',
+		                                  configuration={
+		                                        'query': {
+		                                            'query': open('my.sql', 'r').read().format(**locals()),
+		                                            'destinationTable': {
+		                                                'projectId': PROJECT,
+		                                                'datasetId': DESTINATION_DS,
+		                                                'tableId': DESTINATION_TBL
+		                                            },
+		                                            'useLegacySql': False,
+		                                            'allowLargeResults': True,
+		                                        }
+		                                    },
+		                                    dag=dag
+		                                )) 
+``
