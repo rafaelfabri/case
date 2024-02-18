@@ -88,7 +88,7 @@ A explicação desse valor ocorre da relaçao da confidence com o support_conseq
 * montar promomoções na compra de duas caixa de leite o cliente ganha um desconto no leite condensado;
 * montar Kit de vendas
 
-:pushpin: Essas ideias podem ser aplicadas entre os items A e items B que aparecem na tabela acima
+:pushpin: Essas ideias podem ser aplicadas entre os items A e items B que aparecem na tabela acima.
 
 Para entendermos melhor um pouco de como a métrica Lift se comporta podemos ver a matriz abaixo:
 
@@ -131,9 +131,9 @@ Para a parte 2 a ideia é verificar a associação de 3 items, para isso foi pro
 
 Para o algoritmo apriori é necessário colocar um limite como valor de corte para retirar produtos que não possuem um Support tão alto e diminuirmos a complexidade do algoritmo. Pensando em simplificar a primeira parte do algoritmo foi feito semelhante a etapa anterior, foi pego os 10 items mais relevantes pela métrica support(P(A)) invés de aplicar o limite. Com esses 10 items foi calculado o Support(P(A,B)) e depois Support(P(A,B,C))  
 
-$$Support(P(A,B)) = \frac{qtd cestas com (A\and\B)}{n}$$
+$$Support(P(A,B)) = \frac{qtd cestas com (A\ and\ B)}{n}$$
 
-$$Support(P(A,B)) = \frac{qtd cestas com (A\and\B\and C)}{n}$$
+$$Support(P(A,B)) = \frac{qtd cestas com (A\and\ B\ and\ C)}{n}$$
 
 
 > **Resultados**
