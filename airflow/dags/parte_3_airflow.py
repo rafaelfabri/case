@@ -203,6 +203,7 @@ def join_tables(df_support_A, df_support_A_B, df_support_A_B_C):
 with DAG(
          'algoritmo_apriori',
          start_date = pendulum.datetime(2023, 2, 15, tz = 'UTC'),
+         default_args = {'retries' : 3},
          schedule_interval = '0 7 * * *'
         
         ) as dag:
