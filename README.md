@@ -12,7 +12,7 @@ A Market Basket Analysis tem como objetivo trazer métricas de associacões entr
 
 Portanto, nessa parte 1 deste estudo de caso vamos calcular 3 métricas pela metodologia Market Basket Analysis para entender a associação de produtos e responder as perguntas feitas. A métricas são Support (Apoio), Confidence (Confiança), Lift (Levantamento):
 
-* Support: é a frequencia que o produto A apareceu nas cestas/ticket dividido pelo número total de transações, em resumo é o percentual que o produto A apareceu nas cestas daquele determinado período;
+* Support: é a frequencia que o item A apareceu nas cestas/ticket dividido pelo número total de transações, em resumo é o percentual que o produto A apareceu nas cestas daquele determinado período;
 
 $$Support(P(A)) = \frac{qtd A}{n}$$
 
@@ -75,9 +75,9 @@ Consequência: item B
 
 ![exemplo 2](https://github.com/rafaelfabri/case/blob/main/imagens/tabela_final_parte_1.png)
 
-:chart_with_upwards_trend: Dentre os 10 items mais relevantes, o item LEITE CONDENSADO TP 395G PIRACANJ (B) possui o maior Lift (37.84) quando item CR DE LEITE PIRACANJUBA TP 200G (A) está na cesta.
+:chart_with_upwards_trend: Dentre os 10 items mais relevantes, o item *LEITE CONDENSADO TP 395G PIRACANJ* (B) possui o maior Lift (37.84) quando item *CR DE LEITE PIRACANJUBA TP 200G* (A) está na cesta.
 
-:bulb: Isso significa que quando é colocado na cesta um CR DE LEITE PIRACANJUBA TP 200G a chance desse cliente também comprar LEITE CONDENSADO TP 395G PIRACANJ aumenta em 37 vezes. 
+:bulb: Isso significa que quando é colocado na cesta um *CR DE LEITE PIRACANJUBA TP 200G* a chance desse cliente também comprar *LEITE CONDENSADO TP 395G PIRACANJ* aumenta em 37 vezes. 
 
 A explicação desse valor ocorre da relaçao da confidence com o support_consequencia. 
 
@@ -151,7 +151,7 @@ $$Support(P(A,B)) = \frac{qtd cestas com (A and B and C)}{n}$$
 
 O pipeline de dados da parte 3 encontra-se em um script .py neste repositório do GitHub:
 case/airflow/dags/parte_3_airflow.py
-https://github.com/rafaelfabri/case/blob/main/notebooks/parte_2_data_science.ipynb
+https://github.com/rafaelfabri/case/blob/main/airflow/dags/parte_3_airflow.py
 
 Para realizar a orquestração em Airflow foi criada a DAG com o nome algoritmo_apriori, com três Tasks como mostrado abaixo:
 
@@ -163,11 +163,11 @@ Foi utilizado uma Task vazia, chamada de Inicio apenas para representar o iníci
 
 Depois existe uma Task chamada extracao_dados_e_execucao_apriori. Essa task possui algumas funções dentro dela, a principal é realizar a extração de dados e depois realizar as etapas do algoritimo apriori.
 
-Não foi escolhido fazer duas tasks individuais para extraçao e execuçao do algoritmo, pois para passar o dataframe de uma task para outra utilizando um *XCOM* ou fazendo um carregamento pode honerar muito por estarmos trbalhando com um volume significativo de dados.
+:pushpin: Não foi escolhido fazer duas tasks individuais para extraçao e execuçao do algoritmo, pois para passar o dataframe de uma task para outra utilizando um *XCOM* ou fazendo um carregamento, pode honerar muito por estarmos trabalhando com um volume significativo de dados.
 
-A task final utiliza de XCOM para salvar o arquivo localmente.
+A task final utiliza de XCOM para salvar o arquivo localmente já que é um dataframe consolidado menor.
 
-Para respondermos a pergunta 2 da parte 3 para gravar a saída do algoritmo apriori para uma tabela no BigQuery pode-se substituir a task 3 pelo código abaixo. Nunca trabalhei com BigQuery então não tenho certeza se toda sintaxe esta correta.
+Para respondermos a pergunta 2 da parte 3 para gravar a saída do algoritmo apriori para uma tabela no BigQuery, pode-se substituir a task 3 pelo código abaixo. Nunca trabalhei com BigQuery então não tenho certeza se toda sintaxe esta correta.
 
 
 ```python
