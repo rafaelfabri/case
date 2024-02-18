@@ -62,45 +62,54 @@ O fluxograma abaixo mostra a lógica simplificada do que foi feito no código em
 
 Com a métrica Support(P(A)) conseguimos ver quais produtos tiverem maior aquísicao percentual no período. Observa-se, que a *SACOLA PLASTICA MM BRANCA* é o produto teve maior percentual de saídas, das 874.860 cestas 3,3% foram SACOLA PLASTICA MM BRANCA. Porteriormente vem *SACOLA PLASTICA MM CINZA*, *PAPEL TOALHA KITCHEN JUMB FD C360FL*, e assim por diante.
 
-A partir destes 10 items A mais relevantes, pode-se verificar os items B que mais acompanham o item A nas cestas. Primeiramente, deve-se ordenar filtras apenas as cestas com os items A e contar os items B que acompanham a cesta, deixando apenas os 15 produtos com maior frequência, a partir disso pode-se calcular a confidence P(B|A), support(B) e Lift.
+A partir destes 10 items A mais relevantes, pode-se verificar os items B que mais acompanham o item A nas cestas. Primeiramente, deve-se filtrar apenas as cestas com os items A e contar os items B que acompanham a cesta, deixando apenas os 15 produtos com maior frequência, a partir disso pode-se calcular a confidence P(B|A), support(B) e Lift.
 
 A métrica principal aqui será o Lift, mas para entendermos ela será necessário utilizarmos a confidence e support(B).
 
 Vamos começar com os items de maior Lift, que está representado na Tabela abaixo:
 
-> Resultados Consolidados
+Antecede: item A
+Consequência: item B
+
+> **Resultados Consolidados**
 
 ![exemplo 2](https://github.com/rafaelfabri/case/blob/main/imagens/tabela_final_parte_1.png)
 
-Dentre os 10 items mais relevantes, o item LEITE CONDENSADO TP 395G PIRACANJ (B) possui o maior Lift (37.84) quando item CR DE LEITE PIRACANJUBA TP 200G (A) está na cesta.
+:chart_with_upwards_trend: Dentre os 10 items mais relevantes, o item LEITE CONDENSADO TP 395G PIRACANJ (B) possui o maior Lift (37.84) quando item CR DE LEITE PIRACANJUBA TP 200G (A) está na cesta.
 
 :bulb: Isso significa que quando é colocado na cesta um CR DE LEITE PIRACANJUBA TP 200G a chance desse cliente também comprar LEITE CONDENSADO TP 395G PIRACANJ aumenta em 37 vezes. 
 
-A explicação desse valor vem da relaçao da confidence com o support_consequencia que é referente ao item B. Portanto, quando observamos, existe aproximadamente 4,5% de probabilidade do item B ser adquirido dado que o item A também foi adquirido, é uma probabilidade pequena, mas quando comparamos isoladamente a propabilidade do item B ser comprado é de 0,11% (support_consequencia), assim quando adiquirido o item A a chance do item B também se adquirido é 37 vezes maior.
+A explicação desse valor ocorre da relaçao da confidence com o support_consequencia. 
 
-Aqui podemos ver uma oportunidade de alavancar a venda do LEITE CONDENSADO que é comprado apenas 0,11% das vezes:
+:bulb: Quando observamos, existe aproximadamente 4,5% de probabilidade do item B ser adquirido dado que o item A também foi adquirido, é uma probabilidade pequena, mas quando comparamos isoladamente a propabilidade do item B ser comprado é de 0,11% (support_consequencia) sendo um item esteve em poucas cestas neste período. Portante, quando o item A está em na cesta de um determinado cliente a chance do item B também ser adicionada é 37 vezes maior.
+
+:chart_with_upwards_trend: Aqui podemos ver uma oportunidade de alavancar a venda do LEITE CONDENSADO que é comprado apenas 0,11% das vezes:
 * se colocarmos leite condesado próximo ao leite;
 * montar promomoções na compra de duas caixa de leite o cliente ganha um desconto no leite condensado;
 * montar Kit de vendas.
 
-Para entendermos um pouco de como a métrica Lift se comparta podemos ver a matriz abaixo:
+
+Para entendermos melhor um pouco de como a métrica Lift se comporta podemos ver a matriz abaixo:
 
 ![Matriz](https://github.com/rafaelfabri/case/blob/main/imagens/matriz.png)
 
-* **Lift <= 1** isso mostra que não temos evidencias suficientes que o cliente que fazer aquisição do item A também vai fazer a aquisição so item B.
-* **Lift > 1** isso mostra indicios que a aquisição do item A aumenta a chance da aquisição do item B
+* **Lift <= 1** isso mostra que não temos evidencias suficientes que o cliente que fazer aquisição do item A também vai fazer a do item B.
+* **Lift > 1** isso mostra indicios que a aquisição do item A aumenta a chance da aquisição do item B.
 
 Para chegarmos nesses resultados do Lift tem 4 possibilidades:
-1) Confidence Alto e Support Alto: Quando se tem a condidence(P(B|A)) alto isso indica que existe uma grande probabilidade do item B ser adiquirido quando o item A também for. No entanto, o item B isoladamente já possui uma alta probabilidade de aquisição. Portanto, não há um questão de associação entre o item A e o item B, mas sim uma semelhança por os dois item serem items que saem bastante.
-2) Confidence Alto e Support Pequeno: Esse caso representa o exemplo acima, a confidence é alta fazendo o item B ter uma alta probabilidade de ser adquirido se o item A também for adquirido. Quando olhamos isoladamente o item B os clietes fazer pouca aquisição dele, mas quando acompanhado do item A a chance dele ser comprado aumenta.
-3) Confidence Pequeno e Support Alto: A confidence dos dois produtos é pequena, mas o support do item B é alto, o que provoca um Lift menor que 1, o item A e B são comprados individualmente não sendo associados.
-4) Confidence Pequeno e Support Pequeno: Nesse caso os dois são pequenos, não há indicios suficientes para dizermos que os items são associados.
+1) (:arrow_up: Confidence Alto) e (:arrow_down: Support Alto): Quando se tem a condidence(P(B|A)) alto isso indica que existe uma grande probabilidade do item B ser adiquirido quando o item A também for. No entanto, o item B isoladamente já possui uma alta probabilidade de aquisição. Portanto, não há um questão de associação entre o item A e o item B, mas sim uma semelhança por os dois serem items que possuem alto volume de vendas.
+
+2) (:arrow_up: Confidence Alto) e (:arrow_down: Support Pequeno): Esse caso representa o exemplo acima, a confidence é alta fazendo o item B ter uma alta probabilidade de ser adquirido se o item A também for adquirido. Quando olhamos isoladamente o item B há pouca pouca aquisição deste no período. No entanto, quando acompanhado do item A está na cesta a chance do item B ser comprado aumenta.
+
+3) ( :arrow_down: Confidence Pequeno) e (Support Alto): A confidence dos dois produtos é pequena, mas o support do item B é alto, o que provoca um Lift menor que 1, o item A e B são comprados individualmente não sendo associados.
+
+4) ( :arrow_down: Confidence Pequeno) e ( :arrow_down: Support Pequeno): Nesse caso os dois são pequenos, não há indicios suficientes para dizermos que os items são associados.
 
 Abaixo estão os valores com menor Lift.
 
 ![exemplo 3](https://github.com/rafaelfabri/case/blob/main/imagens/tabela_final_parte_1_.png)
 
-Observa-se que todos os Lift são maiores que 1, mas esses valores continuam próximo de 1 ainda indicando uma fraca associação e olhando rapidamente esses produtos todos items A são cervejas e quando comparado com o item B na prática realmente não há um associação entre esses items. No entanto, é importante realizar um estudo com mais cuidado.
+Observa-se que todos os Lift são maiores que 1, mas esses valores continuam próximo de 1 ainda indicando uma fraca associação. Observando o items A, nota-se que todos são cervejas e comparando com o item B, na prática, pode-se afirmar que realmente não há uma associação entre esses items. No entanto, é importante realizar um estudo com mais cuidadoso.
 
 
 # Parte 2: Data Science
