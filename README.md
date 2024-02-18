@@ -46,13 +46,13 @@ $$Lift= \frac{P(A U B)}{Support(P(A))*Support(P(B))}$$
 
 Utilizando a métrica Support(P(A)) vamos conseguir verificar os 10 items mais relevantes no período do conjunto de dados e com as métricas de Confidence(P(B|A)) e Lift podemos entender os 15 items B que mais acompanham cada um dos respectivos items A. Desta forma, podemos entender melhor a associação de produtos na cesta dos consumidores e também sugerir combos/promoções para alavancar a venda.
 
-O fluxograma abaixo mostra a lógica simplificada do que foi feito no código em Python que encontra-se no Jupyter notebook para consolidarmos a tabela final com os valores de cada métrica.
+> **Fluxograma**
 
-> Fluxograma
+O fluxograma abaixo mostra a lógica simplificada do que foi feito no código em Python que encontra-se no Jupyter notebook para consolidarmos a tabela final com os valores de cada métrica.
 
 ![img1](https://github.com/rafaelfabri/case/blob/main/imagens/fluxograma_mba.png)
 
-> Os 10 items mais relevantes no período.
+> **10 items mais relevantes no período**
 
 
 ![support antecede grafico](https://github.com/rafaelfabri/case/blob/main/imagens/10_items_mais_relevantes.png)
@@ -81,13 +81,14 @@ Consequência: item B
 
 A explicação desse valor ocorre da relaçao da confidence com o support_consequencia. 
 
-:bulb: Quando observamos, existe aproximadamente 4,5% de probabilidade do item B ser adquirido dado que o item A também foi adquirido, é uma probabilidade pequena, mas quando comparamos isoladamente a propabilidade do item B ser comprado é de 0,11% (support_consequencia) sendo um item esteve em poucas cestas neste período. Portante, quando o item A está em na cesta de um determinado cliente a chance do item B também ser adicionada é 37 vezes maior.
+:bulb: Quando observamos, existe aproximadamente 4,5% de probabilidade do item B ser adquirido dado que o item A também foi adquirido, é uma probabilidade pequena, mas quando comparamos isoladamente a propabilidade do item B ser comprado é de 0,11% (support_consequencia) sendo um item esteve em poucas cestas neste período. Portanto, quando o item A está em na cesta de um determinado cliente a chance do item B também ser adicionada é 37 vezes maior.
 
 :chart_with_upwards_trend: Aqui podemos ver uma oportunidade de alavancar a venda do LEITE CONDENSADO que é comprado apenas 0,11% das vezes:
 * se colocarmos leite condesado próximo ao leite;
 * montar promomoções na compra de duas caixa de leite o cliente ganha um desconto no leite condensado;
-* montar Kit de vendas.
+* montar Kit de vendas
 
+:pushpin: Essas ideias podem ser aplicadas entre os items A e items B que aparecem na tabela acima
 
 Para entendermos melhor um pouco de como a métrica Lift se comporta podemos ver a matriz abaixo:
 
@@ -97,11 +98,11 @@ Para entendermos melhor um pouco de como a métrica Lift se comporta podemos ver
 * **Lift > 1** isso mostra indicios que a aquisição do item A aumenta a chance da aquisição do item B.
 
 Para chegarmos nesses resultados do Lift tem 4 possibilidades:
-1) (:arrow_up: Confidence Alto) e (:arrow_down: Support Alto): Quando se tem a condidence(P(B|A)) alto isso indica que existe uma grande probabilidade do item B ser adiquirido quando o item A também for. No entanto, o item B isoladamente já possui uma alta probabilidade de aquisição. Portanto, não há um questão de associação entre o item A e o item B, mas sim uma semelhança por os dois serem items que possuem alto volume de vendas.
+1) ( :arrow_up: Confidence Alto) e ( :arrow_down: Support Alto): Quando se tem a condidence(P(B|A)) alto isso indica que existe uma grande probabilidade do item B ser adiquirido quando o item A também for. No entanto, o item B isoladamente já possui uma alta probabilidade de aquisição. Portanto, não há um questão de associação entre o item A e o item B, mas sim uma semelhança por os dois serem items que possuem alto volume de vendas.
 
-2) (:arrow_up: Confidence Alto) e (:arrow_down: Support Pequeno): Esse caso representa o exemplo acima, a confidence é alta fazendo o item B ter uma alta probabilidade de ser adquirido se o item A também for adquirido. Quando olhamos isoladamente o item B há pouca pouca aquisição deste no período. No entanto, quando acompanhado do item A está na cesta a chance do item B ser comprado aumenta.
+2) ( :arrow_up: Confidence Alto) e ( :arrow_down: Support Pequeno): Esse caso representa o exemplo acima, a confidence é alta fazendo o item B ter uma alta probabilidade de ser adquirido se o item A também for adquirido. Quando olhamos isoladamente o item B há pouca pouca aquisição deste no período. No entanto, quando acompanhado do item A está na cesta a chance do item B ser comprado aumenta.
 
-3) ( :arrow_down: Confidence Pequeno) e (Support Alto): A confidence dos dois produtos é pequena, mas o support do item B é alto, o que provoca um Lift menor que 1, o item A e B são comprados individualmente não sendo associados.
+3) ( :arrow_down: Confidence Pequeno) e ( :arrow_up: Support Alto): A confidence dos dois produtos é pequena, mas o support do item B é alto, o que provoca um Lift menor que 1, o item A e B são comprados individualmente não sendo associados.
 
 4) ( :arrow_down: Confidence Pequeno) e ( :arrow_down: Support Pequeno): Nesse caso os dois são pequenos, não há indicios suficientes para dizermos que os items são associados.
 
@@ -120,17 +121,29 @@ https://github.com/rafaelfabri/case/blob/main/notebooks/parte_2_data_science.ipy
 
 ![img 1](https://github.com/rafaelfabri/case/blob/main/imagens/Algoritmo_Apriori.png)
 
-Para a parte 2 a ideia é verificar a associação de 3 items, para isso foi proposto utilizar o algoritmo apriori. Foi feito algumas adpatações em relação ao algoritmo.
+Para a parte 2 a ideia é verificar a associação de 3 items, para isso foi proposto utilizar o algoritmo apriori. 
+
+:pushpin: Foi feito algumas adpatações em relação ao algoritmo para simplicar a complexidade do algoritmo. Foi utilizado lógicas, loop e algoritmo para calcular as métricas do algoritmo apriori, não foi utilizada a biblioteca mlxtend pela quantidade significativa de items e pelas transformações de dados necessária iria honerar muito em processamento.
+
+> **Fluxograma**
 
 ![img 2](https://github.com/rafaelfabri/case/blob/main/imagens/fluxograma_apriori.png)
 
-Resultados
+Para o algoritmo apriori é necessário colocar um limite como valor de corte para retirar produtos que não possuem um Support tão alto e diminuirmos a complexidade do algoritmo. Pensando em simplificar a primeira parte do algoritmo foi feito semelhante a etapa anterior, foi pego os 10 items mais relevantes pela métrica support(P(A)) invés de aplicar o limite. Com esses 10 items foi calculado o Support(P(A,B)) e depois Support(P(A,B,C))  
+
+$$Support(P(A,B)) = \frac{qtd cestas com (A and B)}{n}$$
+
+$$Support(P(A,B)) = \frac{qtd cestas com (A and B and C)}{n}$$
+
+
+> **Resultados**
 
 ![img 3](https://github.com/rafaelfabri/case/blob/main/imagens/apriori_1.png)
 
 ![img 4](https://github.com/rafaelfabri/case/blob/main/imagens/apriori_2.png)
 
 ![img 5](https://github.com/rafaelfabri/case/blob/main/imagens/apriori_3.png)
+
 
 # Parte 3: Pipeline de dados
 
