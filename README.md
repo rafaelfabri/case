@@ -60,19 +60,23 @@ O fluxograma abaixo mostra a lógica simplificada do que foi feito no código em
 
 ![support antecede](https://github.com/rafaelfabri/case/blob/main/imagens/support_antecede.png)
 
-A SACOLA PLASTICA MM BRANCA é o produto teve maior percentual de saídas no respectivo período da base de dados, das 874.860 cestas 3,3% foram SACOLA PLASTICA MM BRANCA. Porteriormente vem SACOLA PLASTICA MM CINZA, PAPEL TOALHA.., etc.
+Com a métrica Support(P(A)) conseguimos ver quais produtos tiverem maior aquísicao percentual no período. Observa-se, que a *SACOLA PLASTICA MM BRANCA* é o produto teve maior percentual de saídas, das 874.860 cestas 3,3% foram SACOLA PLASTICA MM BRANCA. Porteriormente vem *SACOLA PLASTICA MM CINZA*, *PAPEL TOALHA KITCHEN JUMB FD C360FL*, e assim por diante.
 
-Agora que sabemos que esses são os 10 items mais relevantes, vamos ver os produtos mais significativos que o acompanham nas cestas, para ver isso vamos vamos ver os 15 produtos com maior quantidade referente a cada um dos items A calcular a confidence P(B|A), support(B) e Lift.
+A partir destes 10 items A mais relevantes, pode-se verificar os items B que mais acompanham o item A nas cestas. Primeiramente, deve-se ordenar filtras apenas as cestas com os items A e contar os items B que acompanham a cesta, deixando apenas os 15 produtos com maior frequência, a partir disso pode-se calcular a confidence P(B|A), support(B) e Lift.
 
 A métrica principal aqui será o Lift, mas para entendermos ela será necessário utilizarmos a confidence e support(B).
 
 Vamos começar com os items de maior Lift, que está representado na Tabela abaixo:
 
+> Resultados Consolidados
+
 ![exemplo 2](https://github.com/rafaelfabri/case/blob/main/imagens/tabela_final_parte_1.png)
 
 Dentre os 10 items mais relevantes, o item LEITE CONDENSADO TP 395G PIRACANJ (B) possui o maior Lift (37.84) quando item CR DE LEITE PIRACANJUBA TP 200G (A) está na cesta.
 
-Isso significa que quando é colocado na cesta um CR DE LEITE PIRACANJUBA TP 200G a chance desse cliente também comprar LEITE CONDENSADO TP 395G PIRACANJ aumenta em 37 vezes. A explicação desse valor vem da relaçao da confidence com o support_consequencia que é referente ao item B. Portanto, quando observamos, existe aproximadamente 4,5% de probabilidade do item B ser adquirido dado que o item A também foi adquirido, é uma probabilidade pequena, mas quando comparamos isoladamente a propabilidade do item B ser comprado é de 0,11% (support_consequencia), assim quando adiquirido o item A a chance do item B também se adquirido é 37 vezes maior.
+:bulb: Isso significa que quando é colocado na cesta um CR DE LEITE PIRACANJUBA TP 200G a chance desse cliente também comprar LEITE CONDENSADO TP 395G PIRACANJ aumenta em 37 vezes. 
+
+A explicação desse valor vem da relaçao da confidence com o support_consequencia que é referente ao item B. Portanto, quando observamos, existe aproximadamente 4,5% de probabilidade do item B ser adquirido dado que o item A também foi adquirido, é uma probabilidade pequena, mas quando comparamos isoladamente a propabilidade do item B ser comprado é de 0,11% (support_consequencia), assim quando adiquirido o item A a chance do item B também se adquirido é 37 vezes maior.
 
 Aqui podemos ver uma oportunidade de alavancar a venda do LEITE CONDENSADO que é comprado apenas 0,11% das vezes:
 * se colocarmos leite condesado próximo ao leite;
