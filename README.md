@@ -8,11 +8,11 @@ https://github.com/rafaelfabri/case/blob/main/notebooks/parte_1_analytics.ipynb
 
 ![Fluxograma](https://github.com/rafaelfabri/case/blob/main/imagens/img1.jpg)
 
-A Market Basket Analysis tem como objetivo trazer métricas de associacões entre produtos/items, essa associação é utilizada muito para setores de loja de varejo, mercados, lojas de convenência, etc. Utilizando conceitos básicos de estatistíca como teoria de probabilidade, interseçao, união, etc, pode-se chegar em valores que trazem insights interessante sobre a aquisição de produtos em cada cesta de compra. 
+A Market Basket Analysis tem como objetivo trazer métricas de associacões entre produtos/items, essa associação é muito utilizada para setores de loja de varejo, mercados, lojas de conveniência, etc. Utilizando conceitos básicos de estatistíca como teoria de probabilidade, interseçao, união, etc, pode-se chegar em valores que trazem insights interessante sobre a aquisição de produtos em cada cesta de compra. 
 
-Portanto, nessa parte 1 deste estudo de caso vamos calcular 3 métricas pela metodologia Market Basket Analysis para entender a associação de produtos e responder as perguntas feitas. A métricas são Support (Apoio), Confidence (Confiança), Lift (Levantamento):
+Portanto, na parte 1 deste estudo de caso vamos calcular 3 métricas pela metodologia Market Basket Analysis para entender a associação de produtos e responder as perguntas feitas. As métricas são Support (Apoio), Confidence (Confiança), Lift (Levantamento):
 
-* Support: é a frequencia que o item A apareceu nas cestas/ticket dividido pelo número total de transações, em resumo é o percentual que o produto A apareceu nas cestas daquele determinado período;
+* Support: é a frequência que o item A apareceu nas cestas/ticket dividido pelo número total de transações, em resumo é o percentual que o produto A apareceu nas cestas daquele determinado período;
 
 $$Support(P(A)) = \frac{qtd A}{n}$$
 
@@ -28,7 +28,7 @@ $$Confidence(P(B | A)) = \frac{P(A U B)}{Support(P(A))}$$
 
 
 	* (P(B | A)) Probabilidade de B ser escolhido se A for escolhido;
-	* P(A U B) Interseção entre A e B, percentual de cestas que A e B foram comprados juntos.
+	* P(A U B) União entre A e B, percentual de cestas que A e B foram comprados juntos dividido pelo total de transações.
 		* P(A U B) = \frac{P(A \cap B)}{n}
 		
 * Lift: A chance do item B ser comparado se item A também for, levando em consideração toda a popularidade de B. As duas equações abaixo podem ser aplicadas para calcular o Lift.
@@ -60,7 +60,7 @@ O fluxograma abaixo mostra a lógica simplificada do que foi feito no código em
 
 ![support antecede](https://github.com/rafaelfabri/case/blob/main/imagens/support_antecede.png)
 
-Com a métrica Support(P(A)) conseguimos ver quais produtos tiverem maior aquísicao percentual no período. Observa-se, que a *SACOLA PLASTICA MM BRANCA* é o produto teve maior percentual de saídas, das 874.860 cestas 3,3% foram SACOLA PLASTICA MM BRANCA. Porteriormente vem *SACOLA PLASTICA MM CINZA*, *PAPEL TOALHA KITCHEN JUMB FD C360FL*, e assim por diante.
+Com a métrica Support(P(A)) conseguimos ver quais produtos tiverem maior aquisicão percentual no período. Observa-se, que a *SACOLA PLASTICA MM BRANCA* é o produto teve maior percentual de saídas, das 874.860 cestas 3,3% foram SACOLA PLASTICA MM BRANCA. Porteriormente vem *SACOLA PLASTICA MM CINZA*, *PAPEL TOALHA KITCHEN JUMB FD C360FL*, e assim por diante.
 
 A partir destes 10 items A mais relevantes, pode-se verificar os items B que mais acompanham o item A nas cestas. Primeiramente, deve-se filtrar apenas as cestas com os items A e contar os items B que acompanham a cesta, deixando apenas os 15 produtos com maior frequência, a partir disso pode-se calcular a confidence P(B|A), support(B) e Lift.
 
@@ -131,9 +131,9 @@ Para a parte 2 a ideia é verificar a associação de 3 items, para isso foi pro
 
 Para o algoritmo apriori é necessário colocar um limite como valor de corte para retirar produtos que não possuem um Support tão alto e diminuirmos a complexidade do algoritmo. Pensando em simplificar a primeira parte do algoritmo foi feito semelhante a etapa anterior, foi pego os 10 items mais relevantes pela métrica support(P(A)) invés de aplicar o limite. Com esses 10 items foi calculado o Support(P(A,B)) e depois Support(P(A,B,C))  
 
-$$Support(P(A,B)) = \frac{qtd cestas com (A and B)}{n}$$
+$$Support(P(A,B)) = \frac{qtd cestas com (A\and\B)}{n}$$
 
-$$Support(P(A,B)) = \frac{qtd cestas com (A and B and C)}{n}$$
+$$Support(P(A,B)) = \frac{qtd cestas com (A\and\B\and C)}{n}$$
 
 
 > **Resultados**
