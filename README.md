@@ -8,7 +8,9 @@ https://github.com/rafaelfabri/case/blob/main/notebooks/parte_1_analytics.ipynb
 
 ![Fluxograma](https://github.com/rafaelfabri/case/blob/main/imagens/img1.jpg)
 
-A market Basket analysis tem como ideia trazer número de associacões entre produtos. Utilizando estatistíca com teoria de probabilidade, interseçao, união, etc. Para a parte 1 deste case foi calculado 3 métricas Support (Apoio), Confidence (Confiança), Lift (Levantamento):
+A Market Basket Analysis tem como objetivo trazer métricas de associacões entre produtos/items, essa associação é utilizada muito para setores de loja de varejo, mercados, lojas de convenência, etc. Utilizando conceitos básicos de estatistíca como teoria de probabilidade, interseçao, união, etc, pode-se chegar em valores que trazem insights interessante sobre a aquisição de produtos em cada cesta de compra. 
+
+Portanto, nessa parte 1 deste estudo de caso vamos calcular 3 métricas pela metodologia Market Basket Analysis para entender a associação de produtos e responder as perguntas feitas. A métricas são Support (Apoio), Confidence (Confiança), Lift (Levantamento):
 
 * Support: é a frequencia que o produto A apareceu nas cestas/ticket dividido pelo número total de transações, em resumo é o percentual que o produto A apareceu nas cestas daquele determinado período;
 
@@ -42,13 +44,15 @@ $$Lift= \frac{P(A U B)}{Support(P(A))*Support(P(B))}$$
 
 
 
-Utilizando essas métricas vamos conseguir verificar os 10 items mais relevantes no período do conjunto de dados, também verificar os 15 items que acompanham esses cada um dos respectivos items e encontrar oportunidades de combos/promoções em conjunto.
+Utilizando a métrica Support(P(A)) vamos conseguir verificar os 10 items mais relevantes no período do conjunto de dados e com as métricas de Confidence(P(B|A)) e Lift podemos entender os 15 items B que mais acompanham cada um dos respectivos items A. Desta forma, podemos entender melhor a associação de produtos na cesta dos consumidores e também sugerir combos/promoções para alavancar a venda.
 
-Com essas métricas vamos conseguir responder as perguntas feitas na Parte 1 deste estudo de caso. O fluxograma abaixo mostra a lógica simplificada do que foi feito no código para chegar na tabela final com os valores.
+O fluxograma abaixo mostra a lógica simplificada do que foi feito no código em Python que encontra-se no Jupyter notebook para consolidarmos a tabela final com os valores de cada métrica.
+
+> Fluxograma
 
 ![img1](https://github.com/rafaelfabri/case/blob/main/imagens/fluxograma_mba.png)
 
-Os 10 items mais relevantes de acordo com a métrica support encontra-se abaixo no gráfico e na tabela: 
+> Os 10 items mais relevantes no período.
 
 
 ![support antecede grafico](https://github.com/rafaelfabri/case/blob/main/imagens/10_items_mais_relevantes.png)
